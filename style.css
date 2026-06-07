@@ -30,18 +30,28 @@ html {
   scroll-behavior: smooth;
 }
 
+::selection {
+  background-color: #FEB0E4;
+  color: #42504f;
+}
+
+::-moz-selection {
+  background-color: #FEB0E4;
+  color: #42504f;
+}
+
 header {
   color: #feb0e4;
 }
 
 header h1 {
   font-size: 5.5rem;
-  line-height: 5.5rem;
+  line-height: 4rem;
 }
 
 .initiatives-container {
-  color: #42504f;
-  background-color: #DAFFFD;
+  /* color: #42504f;
+  background-color: #DAFFFD; */
 }
 
 .initiative-title {
@@ -54,4 +64,118 @@ header h1 {
   font-size: 1.1rem;
   text-decoration: underline;
   cursor: pointer;
+}
+
+/* Navigation Styling */
+nav {
+  /* border-bottom: 2px solid #FEB0E4;
+  padding-bottom: 1rem; */
+  /* display: flex;
+  justify-content: space-between; */
+}
+
+.nav-link {
+  color: #42504f;
+  background-color: #DAFFFD;
+  text-decoration: none;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-link.active {
+  color: #42504f;
+  background-color: #DAFFFD;
+  text-decoration: none;
+}
+
+.nav-link.inactive {
+  color: #DAFFFD;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+/* .nav-link:hover {
+  color: #FEB0E4;
+  border-color: #FEB0E4;
+} */
+
+/* Hero Image Section */
+.hero-section {
+  /* margin: 1rem 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); */
+  color: #42504f;
+  background-color: #DAFFFD;
+}
+
+.hero-section img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Card Styling */
+.card {
+  background-color: #DAFFFD;
+}
+
+.card-title {
+  margin-bottom: 0.8rem;
+  font-size: 1.25rem;
+  color: #42504f;
+  font-weight: bold;
+}
+
+.card-description {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #42504f;
+}
+
+/* Event Card Styling */
+.eventos-container {
+  width: 100%;
+}
+
+.event-card {
+  background-color: #DAFFFD;
+  color: #42504f;
+  width: 100%;
+}
+
+.event-title {
+  margin-bottom: 0.8rem;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  color: #42504f;
+  font-weight: bold;
+}
+
+.event-info {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: #42504f;
+  display: flex;
+  justify-content: space-between;
+}
+
+.event-time {
+  font-weight: bold;
+}
+
+.event-date {
+  text-align: right;
+}
+
+.event-location {
+  margin-bottom: 0.8rem;
+  font-size: 0.9rem;
+  color: #42504f;
+  font-style: italic;
+}
+
+.event-description {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #42504f;
 }

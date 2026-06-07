@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Countdown Timer - TRUENO</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .countdown-display {
+        font-size: 8rem;
+        line-height: 1;
+        letter-spacing: 0.05em;
+      }
+      
+      .input-group {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      
+      .time-input {
+        width: 5rem;
+        padding: 0.75rem;
+        background-color: #DAFFFD;
+        color: #42504f;
+        border: 2px solid #DAFFFD;
+        text-align: center;
+        font-size: 1.2rem;
+      }
+      
+      .time-input:focus {
+        outline: none;
+        border-color: #feb0e4;
+      }
+      
+      .btn {
+        padding: 0.75rem 2rem;
+        background-color: #DAFFFD;
+        color: #42504f;
+        border: none;
+        cursor: pointer;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        transition: background-color 0.2s;
+      }
+      
+      .btn:hover {
+        background-color: #feb0e4;
+      }
+      
+      .btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+      
+      .btn:disabled:hover {
+        background-color: #DAFFFD;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="max-w-screen-md mx-auto px-6 py-16 min-h-screen flex flex-col items-center justify-center gap-12">
+      
+      <!-- Input Section -->
+      <div class="flex flex-col items-center gap-6">
+        <h1 style="font-size: 3rem; line-height: 3rem; color: #feb0e4;">COUNTDOWN TIMER</h1>
+        
+        <div class="flex gap-6 items-center">
+          <div class="input-group">
+            <input 
+              type="number" 
+              id="minutesInput" 
+              class="time-input" 
+              min="0" 
+              max="99" 
+              value="0" 
+              placeholder="00"
+            />
+            <span style="font-size: 1.2rem;">MIN</span>
+          </div>
+          
+          <div class="input-group">
+            <input 
+              type="number" 
+              id="secondsInput" 
+              class="time-input" 
+              min="0" 
+              max="59" 
+              value="0" 
+              placeholder="00"
+            />
+            <span style="font-size: 1.2rem;">SEC</span>
+          </div>
+        </div>
+        
+        <div class="flex gap-4">
+          <button id="startBtn" class="btn">START</button>
+          <button id="pauseBtn" class="btn" disabled>PAUSE</button>
+        </div>
+      </div>
+      
+      <!-- Countdown Display -->
+      <div class="countdown-display" id="countdownDisplay">
+        00:00
+      </div>
+      
+    </div>
+
+    <script>
+      let countdownInterval = null;
+      let totalSeconds = 0;
+      let isRunning = false;
+
+      const minutesInput = document.getElementById('minutesInput');
+      const secondsInput = document.getElementById('secondsInput');
+      const startBtn = document.getElementById('startBtn');
+      const pauseBtn = document.getElementById('pauseBtn');
+      const countdownDisplay = document.getElementById('countdownDisplay');
+
+      function formatTime(seconds) {
+        const mins = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+      }
+
+      function updateDisplay() {
+        countdownDisplay.textContent = formatTime(totalSeconds);
+      }
+
+      function startCountdown() {
+        if (!isRunning) {
+          // Get values from inputs and set total seconds
+          const minutes = parseInt(minutesInput.value) || 0;
+          const seconds = parseInt(secondsInput.value) || 0;
+          totalSeconds = minutes * 60 + seconds;
+
+          if (totalSeconds <= 0) {
+            alert('Please enter a valid time');
+            return;
+          }
+
+          isRunning = true;
+          startBtn.disabled = true;
+          pauseBtn.disabled = false;
+          minutesInput.disabled = true;
+          secondsInput.disabled = true;
+
+          updateDisplay();
+
+          countdownInterval = setInterval(() => {
+            totalSeconds--;
+            updateDisplay();
+
+            if (totalSeconds <= 0) {
+              pauseCountdown();
+              alert('Time\'s up!');
+              resetInputs();
+            }
+          }, 1000);
+        }
+      }
+
+      function pauseCountdown() {
+        if (isRunning) {
+          clearInterval(countdownInterval);
+          isRunning = false;
+          startBtn.disabled = false;
+          startBtn.textContent = 'RESUME';
+          pauseBtn.disabled = true;
+        }
+      }
+
+      function resetInputs() {
+        minutesInput.disabled = false;
+        secondsInput.disabled = false;
+        startBtn.textContent = 'START';
+        startBtn.disabled = false;
+        pauseBtn.disabled = true;
+        totalSeconds = 0;
+        updateDisplay();
+      }
+
+      startBtn.addEventListener('click', startCountdown);
+      pauseBtn.addEventListener('click', pauseCountdown);
+
+      // Prevent invalid input values
+      minutesInput.addEventListener('input', (e) => {
+        if (e.target.value < 0) e.target.value = 0;
+        if (e.target.value > 99) e.target.value = 99;
+      });
+
+      secondsInput.addEventListener('input', (e) => {
+        if (e.target.value < 0) e.target.value = 0;
+        if (e.target.value > 59) e.target.value = 59;
+      });
+
+      // Initialize display
+      updateDisplay();
+    </script>
+  </body>
+</html>
