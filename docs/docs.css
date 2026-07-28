@@ -11,17 +11,16 @@
 }
 
 .docs-content h2 {
-  width: 100%;
-  padding: 0.5rem;
-  font-size: 1.5rem;
-  background-color: #FEB0E4;
-  color: #42504f;
+  font-size: 2rem;
+  line-height: 1;
+  color: #FEB0E4;
 }
 
 .docs-content h3 {
   width: 100%;
-  padding: 0.5rem;
+  font-size: 2rem;
   font-weight: 700;
+  line-height: normal;
   text-transform: uppercase;
   background-color: #DAFFFD;
   color: #42504f;
