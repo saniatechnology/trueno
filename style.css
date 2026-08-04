@@ -179,3 +179,55 @@ nav {
   line-height: 1.5;
   color: #42504f;
 }
+
+/* Subscription confirmation */
+.confirmation-page {
+  min-height: 100vh;
+}
+
+.confirmation-page header h2 {
+  background-color: #feb0e4;
+  color: #475756;
+  font-size: 1.4rem;
+  line-height: 1.6rem;
+}
+
+.confirmation-card {
+  width: 100%;
+  max-width: 42rem;
+  padding: 2rem;
+  background-color: #dafffd;
+  color: #42504f;
+}
+
+.confirmation-kicker {
+  color: #42504f;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+.confirmation-card h2 {
+  color: #42504f;
+  font-size: clamp(2rem, 7vw, 4rem);
+  line-height: 1;
+}
+
+.confirmation-card p:not(.confirmation-kicker) {
+  max-width: 34rem;
+  line-height: 1.6;
+}
+
+.confirmation-link {
+  align-self: flex-start;
+  padding: 0.75rem 1rem;
+  background-color: #feb0e4;
+  color: #42504f;
+  text-decoration: underline;
+  text-transform: uppercase;
+}
+
+.confirmation-link:hover,
+.confirmation-link:focus-visible {
+  background-color: #42504f;
+  color: #dafffd;
+}
